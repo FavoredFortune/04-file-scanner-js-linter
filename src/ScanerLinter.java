@@ -12,11 +12,6 @@ public class ScanerLinter {
         // as a file using scanner method
         File file   = new File(filename);
 
-        //invoke method to scan file, in this case gates.js
-         jsLinter(file);
-    }
-
-    public static void jsLinter(String file){
         int line = 0;
         String lineHolder = "";
 
@@ -28,13 +23,12 @@ public class ScanerLinter {
                 lineHolder = scannerJS.nextLine();
                 line++;
                 if ((!lineHolder.contains("{") && !lineHolder.contains("}") && !lineHolder.contains("if") &&
-                        !lineHolder.contains("else") && !lineHolder.isEmpty())){
+                        !lineHolder.contains("else") && !lineHolder.contains("//") && !lineHolder.isEmpty())){
                     System.out.println("Line " + line + ": Missing semicolon");
                 }
             }
         }catch (FileNotFoundException e) {
             e.printStackTrace();
-        } finally {
         }
     }
 }
